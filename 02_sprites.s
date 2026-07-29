@@ -17,19 +17,19 @@ oambuffer = $0200
 _main:
 .(
 
-  ; Cargar las paletas en PPU $3F00
+  ; Cargar las paletas en PPU $3F10 (paletas de sprites)
   LDA PPUSTATUS
   LDA #$3F
   STA PPUADDR
   LDA #$10
   STA PPUADDR
-  LDA #$01 ; Azul
+  LDA #$31 ; Celeste claro
   STA PPUDATA
-  LDA #$14 ; Violeta
+  LDA #$0F ; Negro
   STA PPUDATA
-  LDA #$16 ; Rojo
+  LDA #$26 ; Rosa
   STA PPUDATA
-  LDA #$29 ; Verde
+  LDA #$27 ; Naranja
   STA PPUDATA
   
   LDA #100
@@ -133,7 +133,7 @@ _irq_handler:
 ; Tile 0, all with color zero
 .byt $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,
 ; Tile 1
-.byt $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,
+.byt $28,$3C,$42,$81,$81,$C3,$42,$3C,$00,$00,$00,$24,$00,$5A,$00,$00,
 .dsb $1000-*, $00
 
 ;=== SECOND TILES BANK (4K) ===
