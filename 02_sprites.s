@@ -44,12 +44,26 @@ _main:
   LDA #128
   STA $0203
   
+    ; Cargar sprite
+  ; Sprite Y
+  LDA #120
+  STA $0204
+  ; Sprite tile
+  LDA #1
+  STA $0205
+  ; Sprite attr
+  LDA #0
+  STA $0206
+  ; Sprite X
+  LDA #130
+  STA $0207
   
 
   LDA #$80
   STA PPUCTRL
   LDA #$16
   STA PPUMASK
+  end: JMP end
 .)
 
 
@@ -61,11 +75,14 @@ _main:
 
 _nmi_handler:
 .(
+	
   ; Copy OAM cache
   LDA #$00
   STA OAMADDR
   LDA #$02
   STA OAMDMA
+  
+  INC $0203
 
 
   
