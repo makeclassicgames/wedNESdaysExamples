@@ -136,8 +136,8 @@ _main:
   ; Set scroll
   LDA #0
   STA scrollx
-  LDA #0
   STA scrolly
+  STA scrollt
   
   ; Load sprites to ram cache
   LDX #0
@@ -186,9 +186,10 @@ forever:
 _update:
 .(
   INC scrollx
-  LDA #0
-  STA scrollt
+  BNE next5
+  INC scrollt
   
+  next5:
   ; Player 1 up
   LDA gamepad1
   AND #BTN_UP
